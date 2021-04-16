@@ -5,7 +5,7 @@ This is the original repository for the Network-centric Framework for the Evalua
 
 ## Getting Started
 ### Prerequisites
-Pyhton: 3.8-3.9
+Python: 3.8-3.9
 
 ### Getting Started
 
