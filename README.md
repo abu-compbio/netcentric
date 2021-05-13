@@ -149,18 +149,19 @@ evaluations_via_mla_neighbors.py -c COADREAD -t 20 -m discover discover_strat fi
 ### **ME Evaluations Based on Corrections via TSN**
 
 Network-centric epistasis evaluation framework run on the tissue-specific network (TSN). As output, you get results in NetCentric/results_main/evaluation_results/intact
-
+(c: cancer type, t: threshold, m: methods, ti: tissue, th: tsn threshold)
 ```bash
 cd src
-python evaluations_via_tsn.py
+evaluations_via_tsn.py -c COADREAD -t 20 -m discover discover_strat fishers megsa memo wext -ti Colon -th 0.0
 ```
 
 ROC curves for comparing the mutual exclusivities of tissue-specific and non-tissue specific CGC-CGC gene pairs and non-CGC-non-CGC gene pairs on.
 As output, you get results in NetCentric/results_main/figure_tsn_AUROC
+(c: cancer type, t: threshold, m: methods, th: tsn threshold, p: percentage )
 
 ```bash
 cd src
-python me_on_tsn_ntsn_roc_curve.py
+me_on_tsn_ntsn_roc_curve.py -c COADREAD -t 20 -m discover discover_strat fishers megsa memo wext -th 0.0 -p 0.25
 
 ```
 
