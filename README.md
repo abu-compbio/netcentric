@@ -121,11 +121,11 @@ The codes regarding various analyses given in the main article.
 ### **ME Evaluations Based on Defined Metrics** 
 
 The main source code for the evaluation ME Tests. As output, you get tables with all analysis results in NetCentric/results_main/evaluation_results
-To generate the algorithm for the given input, the following script should be run
+To generate the algorithm for the given input, the following script should be run (c: cancer type, t: threshold, i: number of iteration, m: methods, p: p_value threshold)
 
 ```bash
 cd src
-python evaluations_on_metrics.py
+evaluations_on_metrics.py -c COADREAD -t 20 -i 100 -m discover discover_strat fishers megsa memo wext -p 0.05
 ``` 
 
 ### **ME Evaluations Based on Corrections via MLA**
@@ -135,7 +135,7 @@ As output, you get results in NetCentric/results_main/evaluation_results/percent
 
 ```bash
 cd src
-python evaluations_via_mla.py
+evaluations_via_mla.py -c COADREAD -t 20 -m discover discover_strat fishers megsa memo wext
 ```
 
 Scatterplots of percentage significance of mutual exclusivity runs vs mutation load association (MLA) when only CGC genes that have > 1 neighbors are included.
@@ -143,7 +143,7 @@ As output, you get results in NetCentric/results_main/evaluation_results/percent
 
 ```bash
 cd src
-python evaluations_via_mla_neighbors.py
+evaluations_via_mla_neighbors.py -c COADREAD -t 20 -m discover discover_strat fishers megsa memo wext
 ```
 
 ### **ME Evaluations Based on Corrections via TSN**
