@@ -30,7 +30,7 @@ python script_unzip_data.py
 
 ## Input
 
-1. The PPI network edge and index files. 
+### 1. The PPI network edge and index files. 
 
 The file is located at data/intact_nodupl_index_file.txt where the first column contains gene identifiers and the second column corresponds to gene symbols.
 
@@ -51,7 +51,7 @@ The file is located at data/intact_nodupl_edge_file.txt where the first two colu
 ...
 ``` 
 
-2. Input mutation data
+### 2. Input mutation data
 
 The mutation data includes pairwise mutual exclusivity p-values given for each method (discover, discover_strat, fishers, megsa, memo and wext).
 The files with the name of mutations_all_genes include all genes and intact_filtered include only ones in intact network. 
@@ -95,21 +95,21 @@ A2M	5.539871662596874
 ...
 ``` 
 
-3. Reference cancer genes
+### 3. Reference cancer genes
 
 The file is located at data/known_cancer_genes directory.
 
-1. CGC genes:
+ 1. CGC genes:
 We download all the genes from Cancer Gene Census from COSMIC database.
 
-2.CGC_SNV genes:
+ 2. CGC_SNV genes:
 We try using a subset of CGC genes to include only those which have SNV type of mutations in cancer (378 out of 723 genes). To this end, we filter out the genes where the mutation type column consists of only A (amplification), D (large deletion) or T (translocation). 
 
-3.IntoGen genes:
+ 3. IntoGen genes:
 We download Unfiltered driver results 05.tsv file (2020-02- 02 release) from https://www.intogen.org and include the genes where FILTER column is PASS, which results in 503 genes.  
 
 
-4. TSN
+### 4. TSN
 
 The file contains gtex edges for the corresponding tissue type with a given threshold (0.0 and 0.5)
 
@@ -122,7 +122,7 @@ FADD	CASP8	0.9987163029525032
 ...
 ``` 
 
-5. Mutual Exclusivity Results
+### 5. Mutual Exclusivity Results
 
 The results will be available in the folder ME_results. This folder will appear underthe main directory, when the results are ready.
 
@@ -133,7 +133,10 @@ The codes regarding various analyses given in the main article.
 
 ### **ME Evaluations Based on Defined Metrics** 
 
-The main source code for the evaluation ME Tests. As output, you get tables with all analysis results in NetCentric/ME_results
+The main source code for the evaluation ME Tests. In the main article it was discussed under the section "ME Evaluations Based on Defined Metrics".
+This analysis code were also used in the section "Robustness Analysis of Evaluations Based on Defined Metrics". robustness_iterations value is given as parameter i: number of iteration in the code. 
+
+As output, you get tables with all analysis results in NetCentric/ME_results
 To generate the algorithm for the given input, the following script should be run 
 (c: cancer type, t: threshold, i: number of iteration, m: methods, p: p_value threshold, -ni: network index file, -e:network edge file, -r: Reference cancer genes)
 
@@ -144,8 +147,7 @@ evaluations_on_metrics.py -c COADREAD -t 20 -i 100 -m discover discover_strat fi
 
 ### **ME Evaluations Based on Corrections via MLA**
 
-Scatterplots of percentage significance of mutual exclusivity runs vs mutation load association (MLA)
-As output, you get results in NetCentric/results_main/evaluation_results/percent_sig_figures
+Scatterplots of percentage significance of mutual exclusivity runs vs mutation load association (MLA). In the main article it was discussed under the section "ME Evaluations Based on Corrections via MLA". As output, you get results in NetCentric/MLA_results/percent_sig_figures
 
 ```bash
 cd src
@@ -153,7 +155,7 @@ evaluations_via_mla.py -c COADREAD -t 20 -m discover discover_strat fishers megs
 ```
 
 Scatterplots of percentage significance of mutual exclusivity runs vs mutation load association (MLA) when only CGC genes that have > 1 neighbors are included.
-As output, you get results in NetCentric/results_main/evaluation_results/percent_sig_figures/perc_sig_figures_for_multiple_neighbors
+As output, you get results in NetCentric/MLA_results/perc_sig_figures_for_multiple_neighbors
 
 ```bash
 cd src
@@ -162,7 +164,7 @@ evaluations_via_mla_neighbors.py -c COADREAD -t 20 -m discover discover_strat fi
 
 ### **ME Evaluations Based on Corrections via TSN**
 
-Network-centric epistasis evaluation framework run on the tissue-specific network (TSN).
+In the main article it was discussed under the section "ME Evaluations Based on Corrections via TSN".
 (c: cancer type, t: threshold, m: methods, ti: tissue, th: tsn threshold)
 As output, you get tables with all analysis results in NetCentric/tsn_results.
 
@@ -172,7 +174,7 @@ evaluations_via_tsn.py -c COADREAD -t 20 -m discover discover_strat fishers megs
 ```
 
 ROC curves for comparing the mutual exclusivities of tissue-specific and non-tissue specific CGC-CGC gene pairs and non-CGC-non-CGC gene pairs on.
-As output, you get results in NetCentric/results_main/figure_tsn_AUROC
+As output, you get results in NetCentric/tsn_results/figure_tsn_AUROC
 (c: cancer type, t: threshold, m: methods, th: tsn threshold, p: percentage )
 
 ```bash
@@ -180,14 +182,4 @@ cd src
 me_on_tsn_ntsn_roc_curve.py -c COADREAD -t 20 -m discover discover_strat fishers megsa memo wext -th 0.0 -p 0.25
 
 ```
-
-## Output
-
-The outputs;
-
-* The evaluation results for the TSN network,
-* Scatterplots of percentage significance of mutual exclusivity runs vs mutation load association (MLA),
-* ROC curves for comparing the mutual exclusivities of tissue-specific and non-tissue-specific CGC-CGC gene pairs and non-CGC-non-CGC gene pairs
-
-will be stored in the results_main file. 
 
