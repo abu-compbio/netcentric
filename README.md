@@ -74,7 +74,7 @@ The file is located at data/{method}_mutation_filtered_ep_data/{cancerType}_{met
 ...
 ``` 
 
-The file is located at data/binary_matrices_all_genes_ep_mutation_filtered/ directory. Each row is a TCGA patient id and each column is a gene. The matrix contains 1 if the gene is mutated in the corresponding patient. Here, we only provide the mutation marix  for COADREAD.
+The file is located at data/binary_matrices_all_genes_ep_mutation_filtered/ directory. Each row is a TCGA patient id and each column is a gene. The matrix contains 1 if the gene is mutated in the corresponding patient. Here, we only provide the mutation matrix  for COADREAD.
 
 ```bash
 	patients	A1BG	A1CF	A2M ...
@@ -122,7 +122,10 @@ FADD	CASP8	0.9987163029525032
 ...
 ``` 
 
-5.
+5. Mutual Exclusivity Results
+
+The results will be available in the folder ME_results. This folder will appear underthe main directory, when the results are ready.
+
 
 ## Runs
 
@@ -130,12 +133,13 @@ The codes regarding various analyses given in the main article.
 
 ### **ME Evaluations Based on Defined Metrics** 
 
-The main source code for the evaluation ME Tests. As output, you get tables with all analysis results in NetCentric/results_main/evaluation_results
-To generate the algorithm for the given input, the following script should be run (c: cancer type, t: threshold, i: number of iteration, m: methods, p: p_value threshold)
+The main source code for the evaluation ME Tests. As output, you get tables with all analysis results in NetCentric/ME_results
+To generate the algorithm for the given input, the following script should be run 
+(c: cancer type, t: threshold, i: number of iteration, m: methods, p: p_value threshold, -ni: network index file, -e:network edge file, -r: Reference cancer genes)
 
 ```bash
 cd src
-evaluations_on_metrics.py -c COADREAD -t 20 -i 100 -m discover discover_strat fishers megsa memo wext -p 0.05
+evaluations_on_metrics.py -c COADREAD -t 20 -i 100 -m discover discover_strat fishers megsa memo wext -p 0.05 -ni intact_nodupl_index_file.txt -e intact_nodupl_edge_file.txt -r Census_allFri_Apr_26_12_49_57_2019.tsv
 ``` 
 
 ### **ME Evaluations Based on Corrections via MLA**
@@ -158,8 +162,10 @@ evaluations_via_mla_neighbors.py -c COADREAD -t 20 -m discover discover_strat fi
 
 ### **ME Evaluations Based on Corrections via TSN**
 
-Network-centric epistasis evaluation framework run on the tissue-specific network (TSN). As output, you get results in NetCentric/results_main/evaluation_results/intact
+Network-centric epistasis evaluation framework run on the tissue-specific network (TSN).
 (c: cancer type, t: threshold, m: methods, ti: tissue, th: tsn threshold)
+As output, you get tables with all analysis results in NetCentric/tsn_results.
+
 ```bash
 cd src
 evaluations_via_tsn.py -c COADREAD -t 20 -m discover discover_strat fishers megsa memo wext -ti Colon -th 0.0
@@ -179,7 +185,7 @@ me_on_tsn_ntsn_roc_curve.py -c COADREAD -t 20 -m discover discover_strat fishers
 
 The outputs;
 
-* The evaluation results for the IntAct network and TSN network,
+* The evaluation results for the TSN network,
 * Scatterplots of percentage significance of mutual exclusivity runs vs mutation load association (MLA),
 * ROC curves for comparing the mutual exclusivities of tissue-specific and non-tissue-specific CGC-CGC gene pairs and non-CGC-non-CGC gene pairs
 
