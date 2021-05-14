@@ -32,7 +32,7 @@ python script_unzip_data.py
 
 1. The PPI network edge and index files. 
 
-The file is located at data/intact_nodupl_index_file.txt 
+The file is located at data/intact_nodupl_index_file.txt where the first column contains gene identifiers and the second column corresponds to gene symbols.
 
 ```bash
 0	""CHEBI
@@ -41,7 +41,7 @@ The file is located at data/intact_nodupl_index_file.txt
 3	1EFV
 ...
 ``` 
-The file is located at data/intact_nodupl_edge_file.txt
+The file is located at data/intact_nodupl_edge_file.txt where the first two columns contain the gene identifiers and the third column denotes the confidence level of the interaction. 
 
 ```bash
 7589	13441	0.99
@@ -51,7 +51,7 @@ The file is located at data/intact_nodupl_edge_file.txt
 ...
 ``` 
 
-2. Mutual Exclusivity Data
+2. Input mutation data
 
 The mutation data includes pairwise mutual exclusivity p-values given for each method (discover, discover_strat, fishers, megsa, memo and wext).
 The files with the name of mutations_all_genes include all genes and intact_filtered include only ones in intact network. 
@@ -74,9 +74,7 @@ The file is located at data/{method}_mutation_filtered_ep_data/{cancerType}_{met
 ...
 ``` 
 
-Binary genes matrix: The file contains binary martices for mutation data. 
-
-The file is located at data/binary_matrices_all_genes_ep_mutation_filtered
+The file is located at data/binary_matrices_all_genes_ep_mutation_filtered/ directory. Each row is a TCGA patient id and each column is a gene. The matrix contains 1 if the gene is mutated in the corresponding patient. Here, we only provide the mutation marix  for COADREAD.
 
 ```bash
 	patients	A1BG	A1CF	A2M ...
@@ -97,9 +95,18 @@ A2M	5.539871662596874
 ...
 ``` 
 
-3. COSMIC File (Driver genes)
+3. Reference cancer genes
 
-The file is located at data/Census_allFri_Apr_26_12_49_57_2019.tsv
+The file is located at data/known_cancer_genes directory.
+1. CGC genes:
+We download all the genes from Cancer Gene Census from COSMIC database.
+
+2.CGC_SNV genes:
+We try using a subset of CGC genes to include only those which have SNV type of mutations in cancer (378 out of 723 genes). To this end, we filter out the genes where the mutation type column consists of only A (amplification), D (large deletion) or T (translocation). 
+
+3.IntoGen genes:
+We download Unfiltered driver results 05.tsv file (2020-02- 02 release) from https://www.intogen.org and include the genes where FILTER column is PASS, which results in 503 genes.  
+
 
 4. TSN
 
@@ -113,6 +120,8 @@ PAK1	RAC1	1.0
 FADD	CASP8	0.9987163029525032
 ...
 ``` 
+
+5.
 
 ## Runs
 
