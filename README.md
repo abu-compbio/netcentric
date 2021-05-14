@@ -30,7 +30,9 @@ python script_unzip_data.py
 
 ## Input
 
-### 1. The PPI network edge and index files. 
+### 1. Network edge and index files.
+
+#### 1. PPI Network:
 
 The file is located at data/intact_nodupl_index_file.txt where the first column contains gene identifiers and the second column corresponds to gene symbols.
 
@@ -48,6 +50,48 @@ The file is located at data/intact_nodupl_edge_file.txt where the first two colu
 9123	10446	0.98
 4248	1740	0.98
 3776	5279	0.98
+...
+``` 
+
+#### 2. HINT Network:
+
+The file is located at data/hint_index_file.txt where the first column contains gene identifiers and the second column corresponds to gene symbols.
+
+```bash
+1 A1BG	
+2 A1CF	
+3 A2BP1	
+...
+``` 
+
+The file is located at data/hint_edge_file.txt where the first two columns contain the gene identifiers.
+
+```bash
+2988 7255
+7255 9111
+7255 9109
+...
+``` 
+
+#### 3.PPI Network with 0.25 and 0.45 thresholds:
+
+These index files are located at data/intact_index_file_0.25.txt and data/intact_index_file_0.45.txt where the first column contains gene identifiers and the second column corresponds to gene symbols.
+
+```bash
+1	""CHEBI
+2	100147744
+3	1B
+4	1C
+...
+``` 
+
+These edge file are located at data/intact_edge_file_0.25.txt and data/intact_edge_file_0.45.txt where the first two columns contain the gene identifiers.
+
+
+```bash
+MDM2	TP53
+MYC	MAX
+BRAF	MAP2K1
 ...
 ``` 
 
