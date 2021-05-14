@@ -155,7 +155,7 @@ We download Unfiltered driver results 05.tsv file (2020-02- 02 release) from htt
 
 ### 4. Tissue Specific Network (TSN)
 
-Rather than using a common nonspecific network for all the cancer types, in this component of our evaluation framework we employ TSN based on the tissue in which the tumor develops. In the main article it was discussed under the section "Network-centric ME Evaluations in Relation to TSN". 
+Rather than using a common nonspecific network for all the cancer types, in this component of our evaluation framework we employ TSN based on the tissue in which the tumor develops. To construct the TSN for a particular tissue, we start with the original PPI network and remove the edges between the pairs of genes that are not co-expressed in the corresponding tissue. For this purpose, we download RNA-seq datasets from GTEX portal. In the main article it was discussed under the section "Network-centric ME Evaluations in Relation to TSN". 
 
 The file is located at data/gtex_tsn_fractions_intact_filtered_applied_threshold
 
