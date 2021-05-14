@@ -58,10 +58,10 @@ The files with the name of mutations_all_genes include all genes and intact_filt
 
 The file is located at data/{method}_mutation_filtered_ep_data/{cancerType}_{method}_result_mutations_all_genes_{threshold}.txt
 ```bash
-	gene1	gene2	pvalue	qvalue
-0	A2M	A2ML1	0.6584654889330113	0.9926886078786901
-1	A2M	ABCA1	0.5332913581418495	0.9926886078786901
-2	A2M	ABCA10	0.8971732886956303	0.9926886078786901
+	gene1	gene2	pvalue
+0	A2M	A2ML1	0.6584654889330113
+1	A2M	ABCA1	0.5332913581418495
+2	A2M	ABCA10	0.8971732886956303
 ...
 ``` 
 The file is located at data/{method}_mutation_filtered_ep_data/{cancerType}_{method}_pairs_intact_filtered_subset{threshold}.txt
@@ -98,6 +98,7 @@ A2M	5.539871662596874
 3. Reference cancer genes
 
 The file is located at data/known_cancer_genes directory.
+
 1. CGC genes:
 We download all the genes from Cancer Gene Census from COSMIC database.
 
