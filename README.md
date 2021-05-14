@@ -183,8 +183,7 @@ The codes regarding various analyses given in the main article.
 The main source code for the evaluation ME Tests. In the main article it was discussed under the section "ME Evaluations Based on Defined Metrics".
 This analysis code were also used in the section "Robustness Analysis of Evaluations Based on Defined Metrics". robustness_iterations value is given as parameter i: number of iteration in the code. 
 
-As output, you get tables with all analysis results in NetCentric/ME_results
-To generate the algorithm for the given input, the following script should be run 
+As output, you get tables with all analysis results in NetCentric/ME_results. To generate the algorithm for the given input, the following script should run
 (c: cancer type, t: threshold, i: number of iteration, m: methods, p: p_value threshold, -ni: network index file, -e:network edge file, -r: Reference cancer genes)
 
 ```bash
@@ -211,8 +210,7 @@ evaluations_via_mla_neighbors.py -c COADREAD -t 20 -m discover discover_strat fi
 
 ### **ME Evaluations Based on Corrections via TSN**
 
-In the main article it was discussed under the section "ME Evaluations Based on Corrections via TSN".
-(c: cancer type, t: threshold, m: methods, ti: tissue, th: tsn threshold)
+In the main article it was discussed under the section "ME Evaluations Based on Corrections via TSN". (c: cancer type, t: threshold, m: methods, ti: tissue, th: tsn threshold).
 As output, you get tables with all analysis results in NetCentric/tsn_results.
 
 ```bash
@@ -220,8 +218,7 @@ cd src
 evaluations_via_tsn.py -c COADREAD -t 20 -m discover discover_strat fishers megsa memo wext -ti Colon -th 0.0
 ```
 
-ROC analysis based on tissue-specificity.
-As output, you get results in NetCentric/tsn_results/figure_tsn_AUROC
+ROC analysis based on tissue-specificity. As output, you get results in NetCentric/tsn_results/figure_tsn_AUROC
 (c: cancer type, t: threshold, m: methods, th: tsn threshold, p: percentage )
 
 ```bash
