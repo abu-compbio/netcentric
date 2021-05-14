@@ -144,7 +144,7 @@ A2M	5.539871662596874
 The file is located at data/known_cancer_genes directory.
 
  1. CGC genes:
-We download all the genes from Cancer Gene Census from COSMIC database.
+We download all the genes from Cancer Gene Census from COSMIC database. 
 
  2. CGC_SNV genes:
 We try using a subset of CGC genes to include only those which have SNV type of mutations in cancer (378 out of 723 genes). To this end, we filter out the genes where the mutation type column consists of only A (amplification), D (large deletion) or T (translocation). 
@@ -153,9 +153,9 @@ We try using a subset of CGC genes to include only those which have SNV type of 
 We download Unfiltered driver results 05.tsv file (2020-02- 02 release) from https://www.intogen.org and include the genes where FILTER column is PASS, which results in 503 genes.  
 
 
-### 4. TSN
+### 4. Tissue Specific Network (TSN)
 
-The file contains gtex edges for the corresponding tissue type with a given threshold (0.0 and 0.5)
+Rather than using a common nonspecific network for all the cancer types, in this component of our evaluation framework we employ TSN based on the tissue in which the tumor develops. In the main article it was discussed under the section "Network-centric ME Evaluations in Relation to TSN". 
 
 The file is located at data/gtex_tsn_fractions_intact_filtered_applied_threshold
 
@@ -171,7 +171,7 @@ FADD	CASP8	0.9987163029525032
 The Mutual Exclusivity results will be available in the folder ME_results.
 The TSN results will be available in the folder tsn_results.
 The MLA results will be available in the folder MLA_results.
-These folders will appear underthe main directory, when the results are ready.
+These folders will appear under the main directory, when the results are ready.
 
 
 ## Runs
@@ -220,7 +220,7 @@ cd src
 evaluations_via_tsn.py -c COADREAD -t 20 -m discover discover_strat fishers megsa memo wext -ti Colon -th 0.0
 ```
 
-ROC curves for comparing the mutual exclusivities of tissue-specific and non-tissue specific CGC-CGC gene pairs and non-CGC-non-CGC gene pairs on.
+ROC analysis based on tissue-specificity.
 As output, you get results in NetCentric/tsn_results/figure_tsn_AUROC
 (c: cancer type, t: threshold, m: methods, th: tsn threshold, p: percentage )
 
