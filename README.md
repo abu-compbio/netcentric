@@ -122,9 +122,12 @@ FADD	CASP8	0.9987163029525032
 ...
 ``` 
 
-### 5. Mutual Exclusivity Results
+### 5. Results
 
-The results will be available in the folder ME_results. This folder will appear underthe main directory, when the results are ready.
+The Mutual Exclusivity results will be available in the folder ME_results.
+The TSN results will be available in the folder tsn_results.
+The MLA results will be available in the folder MLA_results.
+These folders will appear underthe main directory, when the results are ready.
 
 
 ## Runs
