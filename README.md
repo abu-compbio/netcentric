@@ -173,7 +173,7 @@ The TSN results will be available in the folder tsn_results.
 The MLA results will be available in the folder MLA_results.
 These folders will appear under the main directory, when the results are ready.
 
-The commands to run the mutual exclusivity algorithms are shown **in running_mex_methods** section.
+The commands to run the mutual exclusivity algorithms are shown in **running_mex_methods** section.
 
 ## Runs
 
