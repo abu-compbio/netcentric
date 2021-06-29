@@ -65,18 +65,54 @@ oddsratio, pvalue = fisher_exact([[both_A_and_B, B_but_not_A],[A_but_not_B,no_A_
 #### Package available: http://ciriellolab.org/dataandtools.html
 This method was developed in Java by the authors. However it proved difficult to implement and adjust with our data. We rewrote the code in python and ran it on our data.
 
-The "MEMO_bipartite_from_binary_graph_alternate" notebook is used for running the pyhton version of MEMO.
+The "MEMO_bipartite_from_binary_graph_alternate" notebook contains the functions and step by step instructions used for running the pyhton version of MEMO.
 
 -----------------------
 
 ## 4. MEGSA (Hua et. al. 2016)
 #### R Package available: https://dceg.cancer.gov/tools/analysis/megsa
-MEGSA is a statistical test run on R. From the main script of MEGSA, the funestimate function was used to get the log likelyhood between two genes. The log likelyhood value was then used to perform a chi square test that returned the desired pairwise p-values. Follow the adjusted script, "run_megsa.R" to run MEGSA.
+MEGSA is a statistical test run on R. From the main script of MEGSA, the funestimate function was used to get the log likelyhood between two genes. The log likelyhood value was then used to perform a chi square test that returned the desired pairwise p-values. Follow the adjusted script, "run_megsa.R" for the commands to run MEGSA.
 
-It is to be noted that, MEGSA authors discouraged running MEGSA on a dataset of more than 100 genes. Therefore, the run was limited to a threshold of 20.
+It is to be noted that, MEGSA authors discouraged running MEGSA on a dataset of more than 100 genes. Therefore, MEGSA runs were limited to the $t=20$ setting.
 
 -----------------------
   
 ## 4. WExT (Leiserson et. al. 2016)
 #### Github repository: https://github.com/raphael-group/wext
-For WExT follow the instructions given in their github repository and run "find_exclusive_sets.py" script with WRE Saddlepoint approximation. The gene set size, k, was limited to 2 for pairwise results.wext 
+For WExT follow the instructions given in their github repository and run "find_exclusive_sets.py" script with WRE Saddlepoint approximation. The gene set size, k, was limited to 2 for pairwise results.wext. Combining all the parameters, the following commands were used:
+
+1. Define the parameters:  
+```
+num_permutations=10000
+num_cores=30
+C=COADREAD
+T=5
+```
+
+2. Compute mutation probabilities:  
+```
+python2 ../../compute_mutation_probabilities.py \
+	-mf adjacency_files/${C}_adjacency_json_t${T}.json \
+	-np $num_permutations \
+	-nc $num_cores \
+	-wf weights_files/${C}_weights_t${T}.npy \
+	-s  12345 \
+	-v  1
+```
+
+3. Find sets using mutual exclusivity test statistic:  
+```
+python ../../find_exclusive_sets.py \
+	-mf adjacency_files/${C}_adjacency_json_t${T}.json \
+	-ks  2 \
+	-c  $num_cores \
+	-f  0 \
+	-s	Enumerate \
+	-o  exclusivity_results/${C}_wext_raw_output_t${T} \
+	-v  4 \
+	WRE \
+	-m Saddlepoint \
+	-wf weights_files/${C}_weights_t${T}.npy \
+```
+
+Note that the adjacency file contains an adjacency matrix that follows the input format for WExT.
