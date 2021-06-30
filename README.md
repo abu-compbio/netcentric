@@ -95,6 +95,20 @@ BRAF	MAP2K1
 ...
 ``` 
 
+
+#### 4.STRING Network:
+
+The file is located at data/string_network.txt where it shows the edges between two genes (gene1 and gene2).
+
+```bash
+	gene1	gene2
+0	A1CF	APOBEC3H
+1	A1CF	APOBEC3G
+2	A1CF	APOBEC3A
+3	A1CF	APOBEC3C
+...
+``` 
+
 ### 2. Input mutation data
 
 The mutation data includes pairwise mutual exclusivity p-values given for each method (discover, discover_strat, fishers, megsa, memo and wext).
