@@ -206,6 +206,13 @@ cd src
 evaluations_on_metrics.py -c COADREAD -t 20 -i 100 -m discover discover_strat fishers megsa memo wext -p 0.05 -ni intact_nodupl_index_file.txt -e intact_nodupl_edge_file.txt -r Census_allFri_Apr_26_12_49_57_2019.tsv
 ``` 
 
+In order to run the code with STRING network, keep the edge and index files empty and use the command given below. (-str: String network)
+
+```bash
+cd src
+evaluations_on_metrics.py -c COADREAD -t 20 -i 100 -m discover discover_strat fishers megsa memo wext -p 0.05 -str string_network.txt -r Census_allFri_Apr_26_12_49_57_2019.tsv
+```
+
 ### **ME Evaluations Based on Corrections via MLA**
 
 Scatterplots of percentage significance of mutual exclusivity runs vs mutation load association (MLA). In the main article it was discussed under the section "ME Evaluations Based on Corrections via MLA". As output, you get results in NetCentric/MLA_results/percent_sig_figures

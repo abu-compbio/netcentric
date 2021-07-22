@@ -25,8 +25,9 @@ if __name__ == '__main__':
     parser.add_argument('-i', '--randiter', type=int, required=False, default=100)
     parser.add_argument('-m', '--methods', action='store', dest='alist',type=str, nargs='*', default=['discover','fishers','wext'])
     parser.add_argument('-p', '--pvalue_threshold', type=float, required=False, default=0.05, help="p value threshold")
-    parser.add_argument("-ni", "--network_index", type=str, required=True) #network index
-    parser.add_argument("-e", "--network_edge", type=str, required=True) #network edge
+    parser.add_argument("-ni", "--network_index", type=str, required=False) #network index
+    parser.add_argument("-e", "--network_edge", type=str, required=False) #network edge
+    parser.add_argument("-str", "--string_net", type=str, required=False) #string network
     parser.add_argument("-r", "--ref", type=str, required=True) #reference genes
 
     args = parser.parse_args()
@@ -38,6 +39,7 @@ if __name__ == '__main__':
     pvalue_threshold=args.pvalue_threshold
     network_index=args.network_index
     network_edge=args.network_edge
+    string_net=args.string_net
     ref=args.ref
     sig_threshold=-np.log(pvalue_threshold)
     zero_threshold = 0
@@ -61,6 +63,9 @@ if __name__ == '__main__':
         index_file='../data/intact_index_file_0.45.txt'
         edge_file='../data/intact_edge_file_0.45.txt'
         save_path = '../ME_results/intact_results_0.45'
+        
+    elif string_net=="string_network.txt":
+        save_path = '../ME_results/string_network_results'
         
     if ref=="Census_allFri_Apr_26_12_49_57_2019.tsv":
         cosmic_infile = '../data/known_cancer_genes/Census_allFri_Apr_26_12_49_57_2019.tsv'
@@ -102,15 +107,27 @@ if (network_index=="intact_index_file_0.25.txt" and network_edge=="intact_edge_f
         cosmic_genes = [line.split()[0].upper() for line in f.readlines()[1:]]
 
 else:
-    with open(index_file, 'r') as f:
-        indices = {line.split()[0]:line.split()[1] for line in f.readlines()}
-    
-    with open(edge_file, 'r') as f:
-        edges = [(indices[line.split()[0]].upper(),indices[line.split()[1]].upper()) for line in f.readlines()]
+    if string_net=="string_network.txt":
+        string_network=pd.read_csv("../data/string_network.txt", delimiter="\t")
+        string_network=string_network.drop(columns=["Unnamed: 0"])
+        records = string_network.to_records(index=False)
+        edges = list(records)
         
-    with open(cosmic_infile,'r') as f:
-        cosmic_genes = [line.split()[0].upper() for line in f.readlines()[1:]]
+        with open(cosmic_infile,'r') as f:
+            cosmic_genes = [line.split()[0].upper() for line in f.readlines()[1:]]
+            
+    else:
+        with open(index_file, 'r') as f:
+            indices = {line.split()[0]:line.split()[1] for line in f.readlines()}
+        
+        with open(edge_file, 'r') as f:
+            edges = [(indices[line.split()[0]].upper(),indices[line.split()[1]].upper()) for line in f.readlines()]
+            
+        with open(cosmic_infile,'r') as f:
+            cosmic_genes = [line.split()[0].upper() for line in f.readlines()[1:]]
     
+
+
 
 def chunks(list_of_genes,n=1000):
     """Seperate total genes into chunks for memory management"""
